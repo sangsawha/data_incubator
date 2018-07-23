@@ -1,0 +1,14 @@
+rm(list=ls())
+setwd("t")
+
+library(openxlsx)
+library(plotly)
+
+data.df<-read.xlsx("project_data_forR.xlsx")
+describe(data.df)
+data.asthma.df<-subset(data.df[4:6,])
+describe(data.asthma.df)
+p <- plot_ly(data.asthma.df, x = ~X1, y = ~proportion_0, type = 'bar', name = 'original population') %>%
+  add_trace(y = ~proportion_1, name = 'frequent ER use group') %>%
+  layout(yaxis = list(title = 'proportion'), barmode = 'group')
+p
