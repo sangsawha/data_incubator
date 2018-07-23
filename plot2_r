@@ -1,0 +1,15 @@
+rm(list=ls())
+setwd("C:/Users/Jin/Documents/Data_incubator_project")
+
+library(openxlsx)
+library(plotly)
+library(plotrix)
+library(ggplot2)
+data.df<-read.xlsx("asthma_er_use.xlsx")
+describe(data.df)
+
+ggplot(data.df, aes(x = freq_t, y = Freq., fill=Freq.)) + 
+  ggtitle("ER visit frequency in last 12 months") +
+  xlab("total frequency")+ylab("proportion")+
+  geom_bar(stat = "identity")+
+  scale_fill_gradient(low="#FF8888",high="#FF0000")
